@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class OrdersTableViewController: UITableViewController {
+class OrdersTableViewController: UITableViewController, AddCoffeeOrderDelegate {
     
     var orderListViewModel = OrderListViewModel()
     
@@ -17,13 +17,21 @@ class OrdersTableViewController: UITableViewController {
         populateOrders()
     }
     
+    // MARK: delegate functions of AddCoffeeOrderDelegate
+    func addCoffeeOrderViewControllerDidClose(controller: UIViewController) {
+        controller.dismiss(animated: true)
+    }
+    
+    func addCoffeeOrderViewControllerDidSave(order: Order, controller: UIViewController) {
+        controller.dismiss(animated: true)
+        let orderVM = OrderViewModel(order: order)
+        self.orderListViewModel.ordersViewModel.append(orderVM)
+        self.tableView.insertRows(at: [IndexPath(row: self.orderListViewModel.ordersViewModel.count - 1, section: 0)], with: .automatic)
+    }
+    
+    
     private func populateOrders() {
-        guard let coffeeOrdersURL = URL(string: "https://guarded-retreat-82533.herokuapp.com/orders") else {
-            fatalError("URL was incorrect")
-        }
-         
-        let resource = Resource<[Order]>(url: coffeeOrdersURL)
-        WebsService().load(resource: resource) { [weak self] result in
+        WebsService().load(resource: Order.all) { [weak self] result in
             switch result {
             case .success(let orders):
                 self?.orderListViewModel.ordersViewModel = orders.map(OrderViewModel.init)
@@ -32,6 +40,14 @@ class OrdersTableViewController: UITableViewController {
                 print(error)
             }
         }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let nav = segue.destination as? UINavigationController,
+        let addCoffeeOrderVC = nav.viewControllers.first as? AddOrderViewController else {
+            fatalError("Error performing segue!")
+        }
+        addCoffeeOrderVC.delegate = self
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {

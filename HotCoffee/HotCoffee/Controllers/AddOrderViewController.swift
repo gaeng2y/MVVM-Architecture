@@ -8,7 +8,15 @@
 import Foundation
 import UIKit
 
+protocol AddCoffeeOrderDelegate {
+    func addCoffeeOrderViewControllerDidSave(order: Order, controller: UIViewController)
+    func addCoffeeOrderViewControllerDidClose(controller: UIViewController)
+}
+
 class AddOrderViewController: UIViewController {
+    
+    var delegate: AddCoffeeOrderDelegate?
+    
     private var vm = AddCoffeeOrderViewModel()
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var nameTextField: UITextField!
@@ -32,7 +40,13 @@ class AddOrderViewController: UIViewController {
         self.coffeeSizesSegmentedControl.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
     }
     
-    @IBAction func save(_ sender: UIButton) {
+    @IBAction func close(_ sender: Any) {
+        if let delegate = self.delegate {
+            delegate.addCoffeeOrderViewControllerDidClose(controller: self)
+        }
+    }
+    
+    @IBAction func save(_ sender: Any) {
         let name = self.nameTextField.text
         let email = self.emailTextField.text
         
@@ -47,6 +61,20 @@ class AddOrderViewController: UIViewController {
         
         self.vm.selectedSize = selectedSize
         self.vm.selectedType = self.vm.types[indexPath.row]
+        
+        WebsService().load(resource: Order.create(vm: self.vm)) { result in
+            switch result {
+            case .success(let order):
+                if let order = order, let delegate = self.delegate {
+                    DispatchQueue.main.async {
+                        delegate.addCoffeeOrderViewControllerDidSave(order: order, controller: self)
+                    }
+                }
+                print(order)
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
 }
 
