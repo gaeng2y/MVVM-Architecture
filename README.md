@@ -1,5 +1,7 @@
 # MVVM-Architecture
 
+[제 블로그 정리](https://gaeng2y.medium.com/mvvm%EC%97%90-%EB%8C%80%ED%95%9C-%EC%A0%95%EC%9D%98%EC%99%80-%EA%B0%9C%EB%85%90-%ED%95%A5%EC%95%84%EB%B3%B4%EA%B8%B0-72b189c84b30)
+
 ## 개요
 우선 MVVM에 대한 내용을 참고한 동영상은 스탠포드 강의를 참조했음을 말씀드리며 시작하겠습니다 ㅎㅎ
 
