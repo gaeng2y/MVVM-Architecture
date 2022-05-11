@@ -15,6 +15,7 @@ MVC란 Model-View-Controller로 구성된 패턴으로 서로 너무 밀접하�
 [애플은 CocoaMVC 구조를 제시했습니다.](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Model-View-Controller/Model-View-Controller.html)
 
 ![MVC의 정의를 나타낸 그림](https://miro.medium.com/max/1178/0*yVzhg5HafOSNyWia.png)
+
 CocoaMVC는 Controller가 View와 Model의 중간자 역할로 View와 Model에 독립성을 주었습니다.
 
 ***그러나…***
