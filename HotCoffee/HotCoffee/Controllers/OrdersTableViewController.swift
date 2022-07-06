@@ -29,7 +29,6 @@ class OrdersTableViewController: UITableViewController, AddCoffeeOrderDelegate {
         self.tableView.insertRows(at: [IndexPath(row: self.orderListViewModel.ordersViewModel.count - 1, section: 0)], with: .automatic)
     }
     
-    
     private func populateOrders() {
         WebsService().load(resource: Order.all) { [weak self] result in
             switch result {

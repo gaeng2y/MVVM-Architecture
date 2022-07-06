@@ -1,8 +1,8 @@
 //
 //  AppDelegate.swift
-//  HotCoffee
+//  GoodWeather
 //
-//  Created by gaeng on 2022/04/26.
+//  Created by gaeng on 2022/07/06.
 //
 
 import UIKit
@@ -12,6 +12,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        // iOS 13 이후
+        let navBarAppearance = UINavigationBarAppearance()
+        navBarAppearance.configureWithOpaqueBackground()
+        navBarAppearance.backgroundColor = UIColor(displayP3Red: 52 / 255, green: 152 / 255, blue: 219 / 255, alpha: 1)
+        navBarAppearance.shadowColor = nil
+        navBarAppearance.shadowImage = nil
+        navBarAppearance.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
+        navBarAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
+        UINavigationBar.appearance(whenContainedInInstancesOf: [UINavigationController.self]).standardAppearance = navBarAppearance
+        UINavigationBar.appearance(whenContainedInInstancesOf: [UINavigationController.self]).scrollEdgeAppearance = navBarAppearance
+        
+        UIBarButtonItem.appearance().tintColor = .white
         return true
     }
 
