@@ -17,13 +17,33 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="FM2-RS-eQP">
-                                <rect key="frame" x="0.0" y="44.666666030883789" width="390" height="43.666667938232422"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="WeatherCell" textLabel="6UW-44-Dq3" detailTextLabel="xrf-MD-egQ" rowHeight="134" style="IBUITableViewCellStyleValue1" id="FM2-RS-eQP" customClass="WeatherCell" customModule="GoodWeather" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="44.666666030883789" width="390" height="134"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="FM2-RS-eQP" id="7jD-Np-Pnh">
-                                    <rect key="frame" x="0.0" y="0.0" width="390" height="43.666667938232422"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="390" height="134"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6UW-44-Dq3">
+                                            <rect key="frame" x="20" y="58.000000000000007" width="41" height="26.333333333333332"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xrf-MD-egQ">
+                                            <rect key="frame" x="264.33333333333331" y="48" width="105.66666666666667" height="38.333333333333336"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="cityNameLabel" destination="6UW-44-Dq3" id="lef-fg-mb9"/>
+                                    <outlet property="temperatureLabel" destination="xrf-MD-egQ" id="rUG-W7-cVe"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -42,19 +62,50 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KQW-br-Fm8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="530" y="-21"/>
+            <point key="canvasLocation" x="529.23076923076917" y="-21.327014218009477"/>
         </scene>
         <!--Add City-->
         <scene sceneID="UmZ-kz-5ek">
             <objects>
                 <viewController id="iIV-8L-JS3" customClass="AddWeatherCityViewController" customModule="GoodWeather" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bq8-RY-I4K">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3P7-EX-3zk">
+                                <rect key="frame" x="10" y="118" width="370" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="36Q-oL-PzP">
+                                <rect key="frame" x="167.33333333333334" y="167" width="55.333333333333343" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Save"/>
+                                <connections>
+                                    <action selector="saveCityButtonPressed:" destination="iIV-8L-JS3" eventType="touchUpInside" id="llo-Vx-rPn"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="rgH-Lk-XVj"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="3P7-EX-3zk" firstAttribute="top" secondItem="rgH-Lk-XVj" secondAttribute="top" constant="30" id="IZg-cM-MIm"/>
+                            <constraint firstItem="3P7-EX-3zk" firstAttribute="leading" secondItem="rgH-Lk-XVj" secondAttribute="leading" constant="10" id="TtH-8O-DgJ"/>
+                            <constraint firstItem="36Q-oL-PzP" firstAttribute="top" secondItem="3P7-EX-3zk" secondAttribute="bottom" constant="15" id="Yoa-Co-rFY"/>
+                            <constraint firstItem="3P7-EX-3zk" firstAttribute="centerX" secondItem="bq8-RY-I4K" secondAttribute="centerX" id="fL5-dS-dxG"/>
+                            <constraint firstItem="36Q-oL-PzP" firstAttribute="centerX" secondItem="bq8-RY-I4K" secondAttribute="centerX" id="gcQ-J8-l1w"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Add City" id="wXV-ur-YsI"/>
+                    <navigationItem key="navigationItem" title="Add City" id="wXV-ur-YsI">
+                        <barButtonItem key="leftBarButtonItem" title="X" id="Z16-Kh-chl">
+                            <connections>
+                                <action selector="close:" destination="iIV-8L-JS3" id="Fup-aB-mLJ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="cityNameTextField" destination="3P7-EX-3zk" id="6YL-cj-amr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P4E-3M-res" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -81,10 +132,10 @@
         <!--Navigation Controller-->
         <scene sceneID="mdj-Oh-AZr">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="x1a-SE-ER7" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="x1a-SE-ER7" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="mqF-To-jKi">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="56"/>
+                        <rect key="frame" x="0.0" y="44" width="390" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
