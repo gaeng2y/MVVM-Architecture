@@ -7,19 +7,22 @@
 
 import UIKit
 
+protocol AddWeatherDelegate {
+    func addWeatherDidSave(vm: WeatherViewModel)
+}
+
 class AddWeatherCityViewController: UIViewController {
+    private var addWeatherVM = AddWeatherViewModel()
+    
+    var delegate: AddWeatherDelegate?
+    
     @IBOutlet weak var cityNameTextField: UITextField!
     
     @IBAction func saveCityButtonPressed(_ sender: Any) {
         if let city = cityNameTextField.text {
-            let weatherURL = URL(string: "https://api.openweathermap.org/data/2.5/weather?q=\(city)&appid=12e8ad50c19f1a58d769c2103c169453&units=imperial")!
-            
-            let weatherResource = Resource<Any>(url: weatherURL) { data in
-                return data
-            }
-            
-            WebService().load(resource: weatherResource) { result in
-                
+            addWeatherVM.addWeather(for: city) { vm in
+                self.delegate?.addWeatherDidSave(vm: vm)
+                self.dismiss(animated: true)
             }
         }
     }

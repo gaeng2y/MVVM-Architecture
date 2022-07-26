@@ -8,6 +8,35 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Setting-->
+        <scene sceneID="vat-ux-mK5">
+            <objects>
+                <tableViewController id="4E4-gU-mdg" customClass="SettingTableViewController" customModule="GoodWeather" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="w0E-rv-XCl">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingCell" id="0gy-OB-zM9">
+                                <rect key="frame" x="0.0" y="44.666666030883789" width="390" height="43.666667938232422"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0gy-OB-zM9" id="zGh-sD-1ga">
+                                    <rect key="frame" x="0.0" y="0.0" width="390" height="43.666667938232422"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="4E4-gU-mdg" id="khu-jx-VIe"/>
+                            <outlet property="delegate" destination="4E4-gU-mdg" id="vT9-If-eNC"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Setting" id="ygA-bp-Zbi"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WK7-Na-v9S" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2123.0769230769229" y="-707.34597156398104"/>
+        </scene>
         <!--GoodWeather-->
         <scene sceneID="aJT-Nf-pVZ">
             <objects>
@@ -52,10 +81,14 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="GoodWeather" id="ZeR-lW-9hA">
-                        <barButtonItem key="leftBarButtonItem" title="Settings" id="b5U-S1-Zg7"/>
+                        <barButtonItem key="leftBarButtonItem" title="Settings" id="b5U-S1-Zg7">
+                            <connections>
+                                <segue destination="MtE-Af-TL2" kind="presentation" id="5pl-s3-otO"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="N8E-JB-CbK">
                             <connections>
-                                <segue destination="x1a-SE-ER7" kind="presentation" id="Ux7-AN-YGg"/>
+                                <segue destination="x1a-SE-ER7" kind="presentation" identifier="AddWeatherCityViewController" id="Ux7-AN-YGg"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -109,7 +142,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P4E-3M-res" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2189" y="-41"/>
+            <point key="canvasLocation" x="3116.9230769230767" y="-41.232227488151658"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Lsb-02-1LM">
@@ -145,7 +178,25 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z7D-8C-U5Q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1369.2307692307693" y="-27.014218009478672"/>
+            <point key="canvasLocation" x="2298.4615384615386" y="-27.014218009478672"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="WRi-KE-atn">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="MtE-Af-TL2" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="WQU-2p-TjL">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="4E4-gU-mdg" kind="relationship" relationship="rootViewController" id="tId-wb-msT"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9xm-02-Iip" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1193.8461538461538" y="-707.34597156398104"/>
         </scene>
     </scenes>
     <resources>
