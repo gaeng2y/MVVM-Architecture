@@ -31,7 +31,13 @@
                             <outlet property="delegate" destination="4E4-gU-mdg" id="vT9-If-eNC"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Setting" id="ygA-bp-Zbi"/>
+                    <navigationItem key="navigationItem" title="Setting" id="ygA-bp-Zbi">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="ui8-Km-bvb">
+                            <connections>
+                                <action selector="done" destination="4E4-gU-mdg" id="d8F-FA-VLo"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WK7-Na-v9S" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -83,7 +89,7 @@
                     <navigationItem key="navigationItem" title="GoodWeather" id="ZeR-lW-9hA">
                         <barButtonItem key="leftBarButtonItem" title="Settings" id="b5U-S1-Zg7">
                             <connections>
-                                <segue destination="MtE-Af-TL2" kind="presentation" id="5pl-s3-otO"/>
+                                <segue destination="MtE-Af-TL2" kind="presentation" identifier="SettingTableViewController" id="5pl-s3-otO"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="N8E-JB-CbK">
